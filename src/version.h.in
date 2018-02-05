@@ -1,4 +1,4 @@
 #define BUILD_COMMIT_ID "@VERSION@"
-#define PROJECT_VERSION "2.1.2"
-#define PROJECT_VERSION_BUILD_NO "1251"
+#define PROJECT_VERSION "2.1.2" // Change this, this is the build version.
+#define PROJECT_VERSION_BUILD_NO "1251" // I would refer to this as package version, you can make it a version but I like to name it something cool
 #define PROJECT_VERSION_LONG PROJECT_VERSION "." PROJECT_VERSION_BUILD_NO " (" BUILD_COMMIT_ID ")"
