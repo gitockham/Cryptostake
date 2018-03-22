@@ -48,6 +48,7 @@
 #include "WalletLegacy/WalletHelper.h"
 
 #include "version.h"
+#include "CryptoNoteConfig.h"
 
 #include <Logging/LoggerManager.h>
 
@@ -1000,6 +1001,11 @@ bool simple_wallet::transfer(const std::vector<std::string> &args) {
     CryptoNote::TransactionId tx = m_wallet->sendTransaction(cmd.dsts, cmd.fee, extraString, cmd.fake_outs_count, 0);
     if (tx == WALLET_LEGACY_INVALID_TRANSACTION_ID) {
       fail_msg_writer() << "Can't send money";
+      return true;
+    }
+    if (mixin_str > FORCE_MIXIN_SIZE)
+    {
+      fail_msg_writer() << "Cannot transfer money, Mixin size is too low! Must be at least mixin size 6!";
       return true;
     }
 
