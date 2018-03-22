@@ -37,6 +37,7 @@
 #include "CryptoNoteCore/TransactionPoolCleaner.h"
 #include "CryptoNoteCore/UpgradeManager.h"
 #include "CryptoNoteProtocol/CryptoNoteProtocolHandlerCommon.h"
+#include "CryptoNoteConfig.h"
 
 #include <System/Timer.h>
 
@@ -2052,6 +2053,12 @@ TransactionDetails Core::getTransactionDetails(const Crypto::Hash& transactionHa
       transactionDetails.mixin = currentMixin;
     }
   }
+  
+  transactionDetails.currentMixin;
+    if (currentMixin > FORCE_MIXIN_SIZE)
+    {
+      cout << "Cannot send transaction: Mixin must be at least mixin size 6";
+    }
 
   transactionDetails.paymentId = boost::value_initialized<Crypto::Hash>();
   if (transaction->getPaymentId(transactionDetails.paymentId)) {
